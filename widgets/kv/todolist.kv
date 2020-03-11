@@ -1,0 +1,61 @@
+<ToDoListWidget>:
+    to_do_layout: layout
+    size_hint: (None,None)
+    on_touch_down: print(self.size,title.size,layout.size)
+    canvas:
+        Color:
+            rgba: 1,0,0,.1
+        Rectangle:
+            size: self.size
+    Label:
+        id: title
+        canvas:
+            Color:
+                rgba: 0,1,0,.25
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        size_hint: (None,None)
+        width: root.seed
+        font_size: .1*self.width
+        height: self.texture_size[1]
+        text_size: self.width,None
+        text: root.title
+        bold: True
+        valign: 'center'
+        halign: 'left'
+        pos_hint: {'x':0,'top':1}
+    BoxLayout:
+        id: layout
+        canvas:
+            Color:
+                rgba: 0,0,1,.25
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: 'vertical'
+        size_hint: (None,None)
+        height: self.minimum_height
+        width: title.width
+        y: title.y - self.height
+
+<ToDoListItem>:
+    orientation: 'horizontal'
+    size_hint: (1,None)
+    height: self.minimum_height
+    #Image:
+    #    id: check
+    #    size_hint: (.15,None)
+    #    allow_stretch: False
+    #    pos_hint: {'center_x':.5,'center_y':.5}
+    #    source:  'images/config_checkbox_active.png' if root.checked else 'images/config_checkbox_norm.png'
+    Label:
+        id: desc
+        size_hint: (1,None)
+        text_size: self.width,None
+        height: self.texture_size[1]
+        valign: 'center'
+        halign: 'left'
+        font_size: .2*root.width
+        text: root.description
+
